@@ -11,7 +11,7 @@ cfg_if! {
     }
 }
 
-pub fn compose_svg(color: &String) -> String {
+pub fn compose_svg(color: i32) -> String {
     return format!(r##"
         <svg width="512" height="256" viewbox="0 0 512 256" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -21,7 +21,7 @@ pub fn compose_svg(color: &String) -> String {
                 </linearGradient>
             </defs>
 
-            <rect rx="4" ry="4" width="512" height="256" fill="{}" />
+            <rect rx="4" ry="4" width="512" height="256" fill="#{:0>6X}" />
             <rect rx="4" ry="4" width="512" height="256" fill="url(#g)" />
         </svg>
     "##, color);

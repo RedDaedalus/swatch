@@ -12,8 +12,8 @@ pub async fn main(req: Request, env: Env, _ctx: worker::Context) -> Result<Respo
     router
         .get("/:color/gradient.svg", |_, ctx| {
             if let Some(color) = ctx.param("color") {
-                let color = decode(color).expect("UTF-8").into_owned();
-                let svg = utils::compose_svg(&color);
+                let color = color.parse::<i32>().unwrap();
+                let svg = utils::compose_svg(color);
 
                 let mut headers = Headers::new();
                 headers.append("Content-Type", "image/svg+xml")?;
