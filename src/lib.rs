@@ -40,7 +40,7 @@ pub async fn main(req: Request, env: Env, _ctx: worker::Context) -> Result<Respo
 
                 let mut headers = Headers::new();
                 headers.append("Content-Type", "image/svg+xml")?;
-                // headers.append("Content-Disposition", "inline")?;
+                headers.append("Cache-Control", "max-age=604800")?; // cache images for 1 week
 
                 Ok(Response::ok(svg)?.with_headers(headers))
             } else {
